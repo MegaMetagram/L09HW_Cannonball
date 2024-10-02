@@ -16,6 +16,12 @@ class Cannonball:
     ## Move the cannon ball, using its current velocities.
     #  @param sec the amount of time that has elapsed.
     #
+    class  Print_Iface:
+        def print(self, x, y):
+            print("The ball is at (%.1f, %.1f)" % (x, y))
+            plt.scatter(x, y)
+            plt.pause(.01)
+    
     def move(self, sec, grav=9.81):
         dx = self._vx * sec
         dy = self._vy * sec
@@ -47,13 +53,7 @@ class Cannonball:
         self.move(0.1, user_grav)
 
         while self.getY() > 1e-14:
-            print("The ball is at (%.1f, %.1f)" % (self.getX(), self.getY()))
-
-            plt.scatter(self.getX(), self.getY())
-            plt.pause(.01)
             self.move(0.1, user_grav)
-
-
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
@@ -67,5 +67,10 @@ if __name__ == '__main__':
     c = Cannonball(0)
     c.shoot(angle, v, 9.81)
 
-
-
+class Crazyball(Cannonball):
+    def move():
+        self.rand_q = random.randrange(0,10)
+        if self.getX() < 400:
+            self._x = self._x + self.rand_q
+        if self.getX() >= 400:
+            self._x = self._x - self.rand_q
