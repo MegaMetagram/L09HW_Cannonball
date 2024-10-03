@@ -68,41 +68,18 @@ class Crazyball(Cannonball):
         if self.getX() >= 400:
             self._x = self._x - self.rand_q
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    ##
-    #  Demonstrate the cannonball class.
-    #
-    #from cannonball import Cannonball
-
     angle = float(input("Enter starting angle: "))
     v = float(input("Enter initial velocity: "))
     c = Cannonball(0)
-    c.shoot(angle, v, 9.81)
-
-class Crazyball(Cannonball):
-    def move(self):
-        self.rand_q = random.randrange(0,10)
-        if self.getX() < 400:
-            self._x = self._x + self.rand_q
-        if self.getY() >= 400:
-            self._y = self._y - self.rand_q
-
-def main():
-    testCannnonball = Cannonball
-    testCrazyball = Crazyball
-    angle = input("Input angle: ")
-    velocity = input("Input velocity: ")
-    gravity = input("Enter 1-4 to select from the following: \n 1.Earth Gravity \n 2.Moon Gravity \n 3.Crazy trajectory \n 4.Quit \n")
-    match gravity: 
-        case "1":
-            testCannnonball.shoot(angle, velocity, 9.81)
-        case "2":
-            testCannnonball.shoot(angle, velocity, 1.62)
-        case "3":
-            testCrazyball.shoot(angle, velocity, gravity)
-        case "4":
-            exit()
-        case _:
-            print("Invalid input. Please try again.")
-            main()
+    grav = int(input("Enter 1-4 to select from the following: \n 1.Earth Gravity \n 2.Moon Gravity \n 3.Crazy trajectory \n 4.Quit \n"))
+    if grav == 1:
+        c.shoot(angle, v, 9.81)
+    elif grav == 2:
+        c.shoot(angle, v, 1.625)
+    elif grav == 3:
+        c = Crazyball(0)
+        c.shoot(angle, v, 9.81)
+    else:
+        print("Goodbye!")
+        exit()
